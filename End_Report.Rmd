@@ -77,17 +77,16 @@ wat gedaan met code
 
 
 # Results
-The code was after looking at the code divided into X parts. 
+After looking carefully at the code, it has been divided into 4 parts. For each of these parts is described what it does and how it could be rewritten to make it less complex and less CPU intensive.
 
-## Bulk density
+## Bulk density -BAS
 The bulk density model is obtained from Cardinael et al., 2015 Geoderma \cite{CardinaelGeoderma} . In this model the measured values are expanded. This is done by a for loop that iterates over all the depths. The measured bulk density values are added to a new dataframe that already have the depths in it. for the measured values there is a if statement that kools if the iteration is at the depth of a measured bulk density. If so, the bulk denisty is added to the dataframe. 
 After adding the measured bulk densities to the corresponding depths in the dataframe, the bulk density for every other depth is interpolated. An if statement checks if the iteration is at a specifik depth and the interpolation is done using the r ```approx()``` function. This function contains several hardcoded parameters that are corresponding to a certain depth.
 if statements
 
-## Moyano et al. model
-After looking at the model, the parameters were moved to a separate file, like the model by Moyano et al. 2012\cite{Moyano12}. This model was used to calculate the moist in the clay. 
-
-grafieken met onderschrift en uitleg over wat er te zien is
+## Moyano et al. model | 340-553 -OOK BAS BLIJKBAAR
+After looking at the model, the parameters were moved to a separate file, like the model by Moyano et al. 2012\cite{Moyano12}. This model was used to calculate the moist in the clay.
+The Moyano et al. model starts with reading in a few comma seperated values (CSV) files. These files contain moisture respiration data, data description and function indexes. These values are stored in a dataframe that contains the description, the values and some statistics about these values. The values are splitted in subsets too. For the next step in the preparation the subsetted value is combined with one of the CSV files and the subsetted value matrix is deleted. The last step transforms a column of another CSV file to a practical scale and makes a subset of this matrix.
 
 ## SOC stocks -BAS
 The model for the SOC stocks is obtained from Cardinael et al., 2015 Geoderma\cite{CardinaelGeoderma}. This model initalizes some values, such as a matrix with values of the clay, and generates a sequence for the humufied layer. It also gets a value from the moyano model: the moist in the clay.
@@ -97,11 +96,7 @@ After this the Diameter at breast height (DBH) is calculated. Next, the yield va
 
 ## Roots profile -BAS
 The model for the roots profile is obtained from another study: Cardinael et al. 2015 Plant and Soil \cite{CardinaelRoot}.
-For the roots profile, at first there is created a matrix. This matrix contains the depths and the distances. 
--- Maaak matrix aan
--- bereken de waarden van wortels op een bepaald punt
--- als de waarde onder een bepaalde drempel komt, verwijder ze gewoon
--- zet anders de waarde in de matrix
+For the roots profile, at first there is created a matrix. This matrix contains the depths and the distances. For every depth and distance the amount of roots in the soil is calculated. This calcualtion is done three times: one for the amount of tree roots, one for the amount of crop roots and one for the amount of of grass under the tree line. In every calculation is included that ther may grow grass to a specified number of meters from the tree. This results in the following statement: if the distance is below the limit of where the grass grows, put the value to zero.
 
 # Discussion
 The model by Cardinael et al. 2018 \cite{Cardinael18} was a hard model to rewrite. This was eventually not done due to time issues. 
