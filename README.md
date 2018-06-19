@@ -13,4 +13,4 @@ it first to be able to work with the model.
 
 ## Contributors to this Thema
 * [Rick Venema](https://www.github.com/RickVenema)
-* [Bas Kasemir](https://www.github.com/BasMonkey) 
+* [Bas Kasemir](https://www.bioinf.nl/~bhnkasemir) 
